@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scottsdale Thanksgiving 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a game-day program. Big scoreboard dates, a time rail down the left of each day, sign-up controls on every event. */
+:root{
+  --bg:#f2f3f6; --surface:#ffffff; --ink:#14203a; --muted:#5b6478; --line:#dde1e9;
+  --accent:#e2591d; --accent-ink:#ffffff; --accent-soft:#fde9df; --navy:#13254a; --ok:#1f7a4d;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1426; --surface:#142039; --ink:#e9edf5; --muted:#9aa5bd; --line:#26334f;
+  --accent:#ff7a3d; --accent-ink:#1a0d05; --accent-soft:#3a2214; --navy:#0a1222; --ok:#4fc58a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1426; --surface:#142039; --ink:#e9edf5; --muted:#9aa5bd; --line:#26334f;
+  --accent:#ff7a3d; --accent-ink:#1a0d05; --accent-soft:#3a2214; --navy:#0a1222; --ok:#4fc58a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:880px;margin:0 auto}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+header.hero{padding-block:40px 24px;display:grid;gap:14px}
+.eyebrow{font:600 13px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(44px,9vw,84px)/.92 var(--display);text-transform:uppercase;margin:0;text-wrap:balance;letter-spacing:.01em}
+.lede{max-width:62ch;color:var(--muted);margin:0;font-size:17px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:14px;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:600}
+.me{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--navy);color:#fff;border-radius:12px;padding:14px 16px;display:grid;gap:10px;margin-block:8px 28px;box-shadow:0 6px 20px rgba(10,18,40,.18)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.me-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.me label{font-size:13px;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+.me input{flex:1 1 220px;min-width:0;font:500 16px var(--body);padding:9px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff}
+.me input::placeholder{color:rgba(255,255,255,.55)}
+.me input.need{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent)}
+.me .status{font-size:13px;opacity:.85;flex:1 1 100%}
+.btn{font:600 14px var(--body);border-radius:8px;padding:9px 14px;border:0;cursor:pointer;background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:inherit;border:1px solid currentColor}
+.day{margin-top:36px}
+.day-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px solid var(--ink);padding-bottom:6px;margin-bottom:6px}
+.day-num{font:800 56px/.9 var(--display);color:var(--accent)}
+.day-name{font:800 28px/1 var(--display);text-transform:uppercase}
+.day-sub{color:var(--muted);font-size:14px;margin-left:auto;text-align:right}
+.ev{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.time{font:500 14px/1.3 var(--mono);color:var(--muted);padding-top:4px;font-variant-numeric:tabular-nums}
+.ev h3{font:700 20px/1.25 var(--body);margin:0 0 4px}
+.meta{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px;color:var(--muted);margin-bottom:8px}
+.meta span b{color:var(--ink);font-weight:600}
+.desc{margin:0 0 10px;max-width:64ch}
+.desc ul{margin:6px 0 0;padding-left:20px}
+.tag{display:inline-block;font:600 11px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-right:6px;vertical-align:2px}
+.info .ev h3{font-weight:600}
+.act{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.join{font:600 14px var(--body);padding:8px 14px;border-radius:999px;border:2px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+.join[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.join:disabled{opacity:.45;cursor:not-allowed}
+.step{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.step button{border:0;background:transparent;color:var(--ink);width:32px;height:32px;font-size:18px;cursor:pointer}
+.step output{min-width:56px;text-align:center;font-size:13px;font-variant-numeric:tabular-nums}
+.roster{font-size:13px;color:var(--muted)}
+.roster b{color:var(--ink)}
+.spots{font-size:13px;font-weight:600;color:var(--ok)}
+.spots.full{color:var(--muted)}
+.dishes{margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:12px}
+.dish-head{font:800 20px/1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.dish-grp{display:grid;gap:6px}
+.dish-cat{font:600 11px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.dish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+.dish{display:grid;gap:2px;text-align:left;padding:8px 10px;border-radius:8px;border:1px dashed var(--line);background:var(--bg);color:var(--ink);font:500 14px var(--body);cursor:pointer;min-width:0}
+.dish-name{overflow-wrap:anywhere}
+.dish-by{font-size:12px;color:var(--ok);font-weight:600}
+.dish.taken{border-style:solid;cursor:default}
+.dish.taken .dish-by{color:var(--muted)}
+.dish.mine{border:2px solid var(--accent);background:var(--accent-soft)}
+.dish.mine .dish-by{color:var(--accent)}
+.dish-add{display:flex;gap:8px;flex-wrap:wrap}
+.dish-add input{flex:1 1 200px;min-width:0;font:500 15px var(--body);padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.dish-add .btn.ghost{color:var(--accent)}
+.summary{margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;gap:10px}
+.summary h2{font:800 26px/1 var(--display);text-transform:uppercase;margin:0}
+.summary pre{white-space:pre-wrap;font:500 13px/1.5 var(--mono);background:var(--bg);border-radius:8px;padding:12px;margin:0;max-height:260px;overflow:auto}
+.note{font-size:13px;color:var(--muted);margin:0}
+@media (max-width:560px){.ev{grid-template-columns:1fr;gap:4px}.day-num{font-size:44px}.day-sub{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<style>
+.me input{flex:1 1 200px}
+.me .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.me .fields label{display:grid;gap:4px}
+.dish.claimed-before{border-style:solid;cursor:default}
+.dish.claimed-before .dish-by{color:var(--muted)}
+.send{display:grid;gap:8px}
+.addr{font:500 14px var(--mono);user-select:all;background:var(--bg);padding:6px 8px;border-radius:6px;display:inline-block}
+.err{color:var(--accent);font-weight:600;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Carefree &amp; Cave Creek, Arizona · Nov 25–28, 2026</div>
+    <h1>Scottsdale Thanksgiving 2026</h1>
+    <p class="lede">Four days, one plan, zero excuses. Tap <b>I'm in</b> on everything you want to do, then hit <b>Send my RSVP</b> at the bottom. You'll get your own personalized schedule by email. Sitting on the couch watching other people's families have fun is not on the agenda this year.</p>
+    <div class="facts">
+      <span>Home base <b>Boulders Resort, Carefree</b></span>
+      <span>All times <b>Arizona time</b> (same as Denver this week)</span>
+      <span>Sign up by <b>Fri, Nov 13</b> (we will know if you don't)</span>
+    </div>
+  </header>
+
+  <section class="me" aria-label="Who's signing up">
+    <div class="fields">
+      <label for="household">Your name or household<input id="household" type="text" autocomplete="name" placeholder="e.g. Jacob, or Connie & family" maxlength="60"></label>
+      <label for="email">Email for your schedule<input id="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="120"></label>
+    </div>
+    <div class="status" id="status" role="status">Pick your events below, then send your RSVP at the bottom.</div>
+  </section>
+
+  <main id="days"></main>
+
+  <section class="summary" aria-labelledby="sumh">
+    <h2 id="sumh">Your RSVP</h2>
+    <pre id="sumtext">No events picked yet.</pre>
+    <div class="send">
+      <div class="act"><button class="btn" id="send" type="button">Send my RSVP</button><button class="btn ghost" id="copy" type="button">Copy it instead</button><span class="note" id="copied" role="status"></span></div>
+      <div class="err" id="err" role="alert"></div>
+      <p class="note">"Send my RSVP" opens a ready-to-go email to Ben. Just hit send. If nothing opens, tap "Copy it instead" and email it to <span class="addr">okekehouse@gmail.com</span>. Your personalized schedule comes back to the address you entered above, usually within half a day.</p>
+    </div>
+  </section>
+</div>
+<script>
+const MAP = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+const DAYS = [
+ {num:"25", name:"Wednesday", sub:"Arrival & welcome", events:[
+  {id:"arrive", info:true, time:"~11:00 AM", title:"Ben, Angelique & the boys land at PHX", meta:[["Flight","Delta 2419 from Seattle"]], desc:"Seattle rain, swapped for 75 and sunny. About 45 minutes to the Boulders."},
+  {id:"golf-wed", time:"1:20 PM", title:"Golf, round 1", place:"Boulders South Course", addr:"Boulders Golf Club, 34631 N Tom Darlington Dr, Carefree, AZ", cost:"About $241 per player plus a 10.5% water surcharge (yes, they charge for the water)", unit:"person", desc:"Straight from the airport to the first tee. Priorities. Three ways in:", ways:["I'm in: two open spots in Ben and Arnold's group.","Lessons: grab a bucket on the range and a free lesson from whoever is losing.","Cosplay: collared shirt, visor, strong opinions about the greens, zero swings. Ride in a cart and look important."]},
+  {id:"spa", time:"2:00–4:30 PM", title:"Spa afternoon", place:"Spa at the Boulders", addr:"Spa at the Boulders, 34631 N Tom Darlington Dr, Carefree, AZ", cost:"Varies by treatment, paid at the spa", tag:"18+", unit:"person", desc:"For everyone with the good sense to skip golf. Sign up here, then book your own treatment at 480-595-3500 and mention our group so we're scheduled together. Services end at 5 PM. Robes are encouraged; leaving in one is not."},
+  {id:"pool", time:"6:00–9:30 PM", title:"Poolside welcome & card night", place:"Boulders Resort pool", addr:"Boulders Resort & Spa, 34631 N Tom Darlington Dr, Carefree, AZ", cost:"Free. Hosted by Ben & Angelique", unit:"person", household:true, desc:"Drinks, snacks and fire pits to kick off the trip. Card tables open after dark: spades tournament run by our resident card sharks, Chima and Kamani. Partners drawn from a hat, trophy for the winners, no reneging, no table talk, no crying. Desert evenings drop into the 50s, so bring a layer. Kids welcome."}
+ ]},
+ {num:"26", name:"Thursday", sub:"Thanksgiving", events:[
+  {id:"trot", time:"8:30 AM", title:"Scottsdale Turkey Trot", roles:[["", "I'm in", "Running or walking"], [":cheer", "I'll Cheer Y'all On!", "Cheering"]], place:"5001 N Scottsdale Rd, Scottsdale", addr:"5001 N Scottsdale Rd, Scottsdale, AZ 85250", cost:"Race registration (on the event's Race Roster page)", unit:"person", desc:"A flat 5K along the Arizona Canal with a festival at the finish. Ben and Angelique are registered. Run it, walk it, or stand at the finish holding a sign. All count as cardio. About 35–40 minutes from Carefree, so leave by 7:30."},
+  {id:"golf-thu", time:"10:40 AM", title:"Golf, round 2", place:"Boulders South Course", addr:"Boulders Golf Club, 34631 N Tom Darlington Dr, Carefree, AZ", cost:"About $250–275 per player plus the 10.5% water surcharge", unit:"person", desc:"Walk off the Turkey Trot, tee it up, earn that second plate. Off the course by about 3:15, well before dinner. Three ways in:", ways:["I'm in: two open spots in Ben and Arnold's group.","Lessons: grab a bucket on the range and a free lesson from whoever is losing.","Cosplay: collared shirt, visor, strong opinions about the greens, zero swings. Ride in a cart and look important."]},
+  {id:"photo", info:true, time:"4:00 PM", title:"Family photo", place:"Connie's house, Terravita", meta:[["Who","Everyone. No sign-up, no excuses"]], desc:"One picture of the whole family while the light is good and nobody has gravy on their shirt yet. Wear something you'd want on the holiday card. Arrive by 3:50; the photo happens at 4:00 sharp, with or without you, and we will Photoshop you in badly."},
+  {id:"dinner", time:"4:30 PM", title:"Thanksgiving dinner", place:"Connie's house, Terravita", addr:"Terravita, Scottsdale, AZ", cost:"Free. Bring a dish", unit:"person", household:true, dishes:true, desc:"The main event, hosted by Connie, who is making the turkey. Everyone else brings a dish. Claim one below so we don't end up with four pans of the same thing and no rolls. Tap a dish to claim it, tap again to give it back, or add your own. Store-bought counts if you put it in your own dish.", rules:["Before we eat, we'll take a few minutes for Mom: a toast, and one memory or story from anyone who wants to share. Bring one with you."]},
+  {id:"movie", time:"~7:30 PM", title:"Thanksgiving-night movie: Focker-in-Law", place:"Harkins Scottsdale 101", addr:"Harkins Scottsdale 101, Phoenix, AZ", cost:"Movie ticket, booked as a block", unit:"person", desc:"A comedy about a family wedding and meddling in-laws. Any resemblance to persons at this dinner is purely coincidental. About 25 minutes from Terravita. We'll buy recliner seats together once showtimes post, so the stretchy pants have somewhere to go."}
+ ]},
+ {num:"27", name:"Friday", sub:"Family & football", events:[
+  {id:"golf-fri", time:"7:30 AM", title:"Golf, round 3", tag:"Requested", place:"Ancala Country Club, North Scottsdale", addr:"Ancala Country Club, Scottsdale, AZ", cost:"Guest rate set by the club, confirming", unit:"person", desc:"First tee time of the day at a private club, so the cosplay crew finally gets the setting it deserves. Off the course before noon and back in Cave Creek for kickoff. Waiting on the club to confirm. Three ways in:", ways:["I'm in: two open spots in Ben and Arnold's group.","Lessons: grab a bucket on the range and a free lesson from whoever is losing.","Cosplay: collared shirt, visor, strong opinions about the greens, zero swings. Ride in a cart and look important."]},
+  {id:"shopping", time:"8:00 AM–12:00 PM", title:"Black Friday shopping", tag:"Golf alternative", place:"Scottsdale Fashion Square or Desert Ridge Marketplace", cost:"Whatever your credit limit can handle", unit:"person", roles:[[":fashion", "Fashion Square", "Fashion Square"], [":ridge", "Desert Ridge", "Desert Ridge"]], desc:"For anyone who would rather chase doorbusters than golf balls. Pick your battlefield:", ways:[["Scottsdale Fashion Square", "Scottsdale Fashion Square, 7014 E Camelback Rd, Scottsdale, AZ", " (7014 E Camelback Rd): the big indoor mall near Old Town, with department stores and a luxury wing. About 40 minutes from Carefree. Bring the good card."], ["Desert Ridge Marketplace", "Desert Ridge Marketplace, Phoenix, AZ", " (Tatum Blvd & Loop 101): open-air, mainstream brands and easier prices. About 25 minutes from Carefree and on the way to Cave Creek. Bring the sensible card."], "Store hours vary on Black Friday, so check your must-hit stores the night before. Wrap up by noon to make kickoff. Receipts may be reviewed at halftime."]},
+  {id:"broncos", time:"1:00 PM kickoff", title:"Broncos at Steelers watch party", place:"Charles' house, Quiet Hollow Rd, Cave Creek", addr:"Quiet Hollow Rd, Cave Creek, AZ", cost:"Free. Bring a game-day dish", tag:"Orange & blue", unit:"person", household:true, desc:"Black Friday football. In Phoenix the game is on Prime Video only, so Charles needs Prime on the big TV. Bring whatever is your preferred game day meal or nosh. Dress code is orange and blue. Anyone in black and gold eats last. Final whistle around 4:15."},
+  {id:"meeting", time:"4:30–5:45 PM", title:"Family meeting", place:"Charles' house, Quiet Hollow Rd, Cave Creek", addr:"Quiet Hollow Rd, Cave Creek, AZ", cost:"Free", tag:"Siblings & spouses", unit:"person", desc:"Our first time all together to talk through family matters since we lost Mom. We want real focus and a real ending:", rules:["Agenda goes out Nov 20. Send topics to Ben by Nov 17.","Everyone gets a 3-minute opening turn before open discussion.","One timekeeper, visible timer.","Anything unfinished goes to a family video call in December.","Hard stop 5:45. The Latha crew leaves at 6:15."]},
+  {id:"latha", time:"7:00 PM", title:"Dinner at Latha", place:"628 E Adams St, downtown Phoenix", addr:"Latha Restaurant, 628 E Adams St, Phoenix, AZ 85004", cost:"$31–50 per person before drinks", unit:"person", desc:"Pan-African and diaspora cooking in a Victorian cottage, with a strong cocktail list. Angelique has been trying to get here for ages, so nobody cancels. About 45 minutes from Cave Creek, so leave by 6:15. We'll book private dining if we're more than 8."},
+  {id:"karaoke", time:"9:30–11:30 PM", title:"Karaoke at Blind Dragon", place:"7419 E Indian Plaza Dr, Old Town Scottsdale", addr:"Blind Dragon, 7419 E Indian Plaza Dr, Scottsdale, AZ", cost:"Free. Hosted by Ben & Angelique", tag:"21+", unit:"person", desc:"A private suite, 25,000+ songs, and no witnesses outside the family. Everyone sings at least once; ballads are allowed, but you'll be judged. About 20 minutes from Latha. Line up rideshares or designated drivers back to Carefree."}
+ ]},
+ {num:"28", name:"Saturday", sub:"Send-off", events:[
+  {id:"depart", info:true, time:"~9:15 AM", title:"Ben, Angelique & the boys fly home", meta:[["Flight","Delta 2374 to Seattle"]], desc:"Early wheels-up, so say your goodbyes Friday night. Leftovers will not fit in a carry-on. We checked."},
+  {id:"breakfast", time:"10:00 AM", title:"Farewell breakfast", place:"Local Jonny's Tavern and Café, Cave Creek", addr:"Local Jonny's Tavern and Cafe, 6033 E Cave Creek Rd, Cave Creek, AZ 85331", cost:"Pay your own way", unit:"person", household:true, desc:"For everyone still in town after the Seattle crew bails. Big patio, solid brunch, and a cocktail menu for anyone still recovering from karaoke. Split the leftovers and talk about whoever left early. Sign up so we can book a big enough table."}
+ ]}
+];
+const ROLES = [["", "I'm in", "Playing"], [":lessons", "Lessons", "Lessons"], [":cosplay", "Cosplay", "Cosplay"]];
+const EVENTS = DAYS.flatMap(d => d.events.flatMap(e => {
+  const base = {...e, day:d.name};
+  return (e.roles || e.ways) ? (e.roles || ROLES).map(([suf,,group]) => ({...base, id:e.id+suf, title:e.title + " (" + group.toLowerCase() + ")"})) : [base];
+}));
+
+const DISHES = [
+ ["Sides", ["Mac & cheese","Collard greens","Dressing","Candied yams","Roasted red potatoes","Green beans","Marshmallow salad","Cranberry sauce","Rolls / cornbread"]],
+ ["Nigerian favorites", ["Jollof rice","Meat pie","Puff puff","Chin chin"]],
+ ["Desserts", ["Sweet potato pie","Pumpkin pie","Apple pie","Pound cake"]],
+ ["Drinks & extras", ["Wine","Bourbon","Sparkling & soft drinks","Ice & cups"]]
+];
+
+const RSVP_TO = "okekehouse@gmail.com";
+const CLAIMED = {"mac & cheese":"Cecilia","pound cake":"Cecilia","green beans":"Natalie","wine":"Natalie","gf dressing":"Natalie","apple pie":"The Newlyweds","sparkling & soft drinks":"Arnold","bourbon":"Ben","roasted red potatoes":"Ben","collard greens":"taken"};
+let mine = {household:"", email:"", events:{}, dishes:[]};
+const $ = s => document.querySelector(s);
+const LS = "stg26-open";
+try { const s = JSON.parse(localStorage.getItem(LS) || "null"); if (s && typeof s === "object") mine = {household:s.household||"", email:s.email||"", events:s.events||{}, dishes:Array.isArray(s.dishes)?s.dishes:[]}; } catch(e) {}
+$("#household").value = mine.household; $("#email").value = mine.email;
+function save(){ try { localStorage.setItem(LS, JSON.stringify(mine)); } catch(e) {} }
+function el(tag, attrs, ...kids){ const n = document.createElement(tag); for (const k in (attrs||{})) { if (k==="class") n.className = attrs[k]; else if (k==="text") n.textContent = attrs[k]; else n.setAttribute(k, attrs[k]); } for (const c of kids) if (c!=null) n.append(c); return n; }
+
+function joinBtn(key, label){
+  const on = !!mine.events[key];
+  const b = el("button",{class:"join",type:"button","aria-pressed":String(on),text:(on?"✓ ":"")+label});
+  b.addEventListener("click", () => { mine.events = {...mine.events}; if (on) delete mine.events[key]; else mine.events[key] = 1; save(); render(); });
+  return b;
+}
+function stepper(key){
+  const n = mine.events[key];
+  const st = el("span",{class:"step"});
+  const minus = el("button",{type:"button","aria-label":"Fewer people",text:"−"});
+  const plus = el("button",{type:"button","aria-label":"More people",text:"+"});
+  minus.addEventListener("click", () => { mine.events = {...mine.events}; if (n <= 1) delete mine.events[key]; else mine.events[key] = n-1; save(); render(); });
+  plus.addEventListener("click", () => { mine.events = {...mine.events, [key]: Math.min(n+1, 20)}; save(); render(); });
+  st.append(minus, el("output",{text: n + (n===1?" person":" people")}), plus);
+  return st;
+}
+function dishBoard(){
+  const box = el("div",{class:"dishes"});
+  box.append(el("div",{class:"dish-head",text:"Dish sign-up"}));
+  box.append(el("p",{class:"note",text:"Claimed as of Nov 12 are marked. Pick something open so we don't end up with four pans of the same thing."}));
+  const chip = (name, fixed) => {
+    const key = name.toLowerCase();
+    const isMine = mine.dishes.some(d => d.toLowerCase() === key);
+    const by = fixed || (!isMine && CLAIMED[key]);
+    const b = el("button",{type:"button",class:"dish"+(isMine?" mine":by?" claimed-before":""),"aria-pressed":String(isMine)});
+    b.append(el("span",{class:"dish-name",text:name}), el("span",{class:"dish-by",text: isMine ? "You" : by ? (by==="taken"?"Claimed":by) : "Open"}));
+    if (by) b.disabled = true; else b.addEventListener("click", () => { mine.dishes = isMine ? mine.dishes.filter(d => d.toLowerCase() !== key) : [...mine.dishes, name].slice(0,6); if (mine.dishes.length && !mine.events.dinner) mine.events = {...mine.events, dinner:1}; save(); render(); });
+    return b;
+  };
+  const tg = el("div",{class:"dish-grid"}); tg.append(chip("Turkey","Connie"));
+  const turkey = el("div",{class:"dish-grp"}); turkey.append(el("div",{class:"dish-cat",text:"Main"}), tg); box.append(turkey);
+  const known = new Set(DISHES.flatMap(([,l]) => l.map(x => x.toLowerCase())));
+  for (const [cat, list] of DISHES) { const g = el("div",{class:"dish-grp"}); g.append(el("div",{class:"dish-cat",text:cat})); const grid = el("div",{class:"dish-grid"}); list.forEach(n => grid.append(chip(n))); g.append(grid); box.append(g); }
+  const extra = mine.dishes.filter(d => !known.has(d.toLowerCase()));
+  if (extra.length) { const g = el("div",{class:"dish-grp"}); g.append(el("div",{class:"dish-cat",text:"You're also bringing"})); const grid = el("div",{class:"dish-grid"}); extra.forEach(n => grid.append(chip(n))); g.append(grid); box.append(g); }
+  const add = el("form",{class:"dish-add"});
+  const inp = el("input",{id:"dish-new",type:"text",maxlength:"40",placeholder:"Bringing something else? Add it",autocomplete:"off"});
+  add.append(inp, el("button",{class:"btn ghost",type:"submit",text:"Add"}));
+  add.addEventListener("submit", e => { e.preventDefault(); const v = inp.value.trim(); if (v && !mine.dishes.some(d => d.toLowerCase() === v.toLowerCase())) { mine.dishes = [...mine.dishes, v].slice(0,6); if (!mine.events.dinner) mine.events = {...mine.events, dinner:1}; save(); render(); } });
+  box.append(add);
+  return box;
+}
+
+function render(){
+  const root = $("#days"); root.textContent = "";
+  for (const d of DAYS) {
+    const sec = el("section", {class:"day", "aria-labelledby":"d"+d.num});
+    sec.append(el("div",{class:"day-head"}, el("span",{class:"day-num",text:d.num}), el("h2",{class:"day-name",id:"d"+d.num,text:d.name+", Nov "+d.num}), el("span",{class:"day-sub",text:d.sub})));
+    for (const ev of d.events) {
+      const body = el("div", {style:"min-width:0"});
+      const h = el("h3"); if (ev.tag) h.append(el("span",{class:"tag",text:ev.tag})); h.append(ev.title); body.append(h);
+      const meta = el("div",{class:"meta"});
+      if (ev.place) { const s = el("span"); s.append(el("b",{text:"Where "})); if (ev.addr) s.append(el("a",{href:MAP(ev.addr),target:"_blank",rel:"noopener",text:ev.place})); else s.append(ev.place); meta.append(s); }
+      if (ev.cost) { const s = el("span"); s.append(el("b",{text:"Cost "}), ev.cost); meta.append(s); }
+      for (const [k,v] of (ev.meta||[])) { const s = el("span"); s.append(el("b",{text:k+" "}), v); meta.append(s); }
+      body.append(meta);
+      const p = el("div",{class:"desc"}); p.append(ev.desc.replace("Tap a dish to claim it, tap again to give it back, or add your own. ","Tap a dish to claim it, or add your own. "));
+      for (const list of [ev.ways, ev.rules]) if (list) { const ul = el("ul"); list.forEach(r => { const li = el("li"); if (Array.isArray(r)) li.append(el("a",{href:MAP(r[1]),target:"_blank",rel:"noopener",text:r[0]}), r[2]); else li.textContent = r; ul.append(li); }); p.append(ul); }
+      body.append(p);
+      if (!ev.info) {
+        const act = el("div",{class:"act"});
+        if (ev.roles || ev.ways) { for (const [suf,label] of (ev.roles || ROLES)) act.append(joinBtn(ev.id+suf, label)); }
+        else { const key = ev.id; const on = !!mine.events[key];
+          const b = el("button",{class:"join",type:"button","aria-pressed":String(on),text:on?"✓ I'm in":"I'm in"});
+          b.addEventListener("click", () => { mine.events = {...mine.events}; if (on) delete mine.events[key]; else mine.events[key] = ev.household ? 2 : 1; save(); render(); });
+          act.append(b); if (on) act.append(stepper(key)); }
+        body.append(act);
+        if (ev.dishes) body.append(dishBoard());
+      }
+      sec.append(el("article",{class:"ev"+(ev.info?" info":"")}, el("div",{class:"time",text:ev.time}), body));
+    }
+    root.append(sec);
+  }
+  renderSummary();
+}
+function picked(){ return EVENTS.filter(e => mine.events[e.id]); }
+function rsvpText(){
+  const p = picked();
+  const lines = ["Scottsdale Thanksgiving RSVP", "Name: " + (mine.household.trim() || "(not given)"), "Email: " + (mine.email.trim() || "(not given)"), ""];
+  if (p.length) { lines.push("Events:"); p.forEach(e => lines.push("- " + e.day + " " + e.time + ": " + e.title + " (" + mine.events[e.id] + ")")); }
+  else lines.push("Events: none picked");
+  if (mine.dishes.length) lines.push("", "Bringing to dinner: " + mine.dishes.join(", "));
+  lines.push("", "CODE: " + JSON.stringify({n: mine.household.trim(), e: mine.email.trim(), ev: mine.events, d: mine.dishes}));
+  return lines.join("\n");
+}
+function renderSummary(){
+  const p = picked();
+  $("#sumtext").textContent = p.length ? rsvpText().split("\n\nCODE:")[0] : "No events picked yet.";
+}
+function validate(){
+  const err = $("#err"); err.textContent = "";
+  if (!mine.household.trim()) { err.textContent = "Add your name or household at the top first."; $("#household").focus(); return false; }
+  if (!/^\S+@\S+\.\S+$/.test(mine.email.trim())) { err.textContent = "Add a valid email at the top so we can send your schedule."; $("#email").focus(); return false; }
+  if (!picked().length) { err.textContent = "Pick at least one event. Silence counts as yes to everything, so you might as well choose."; return false; }
+  return true;
+}
+$("#household").addEventListener("input", e => { mine.household = e.target.value; save(); renderSummary(); });
+$("#email").addEventListener("input", e => { mine.email = e.target.value; save(); renderSummary(); });
+$("#send").addEventListener("click", () => {
+  if (!validate()) return;
+  const subject = "Scottsdale RSVP: " + mine.household.trim();
+  location.href = "mailto:" + RSVP_TO + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(rsvpText());
+  $("#copied").textContent = "Your email app should open with the RSVP filled in. Hit send there.";
+});
+$("#copy").addEventListener("click", async () => {
+  if (!validate()) return;
+  const t = rsvpText();
+  try { await navigator.clipboard.writeText(t); $("#copied").textContent = "Copied. Paste it into an email to " + RSVP_TO + "."; }
+  catch(e) { $("#sumtext").textContent = t; const r = document.createRange(); r.selectNodeContents($("#sumtext")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); $("#copied").textContent = "Selected. Copy it and email it to " + RSVP_TO + "."; }
+});
+render();
+</script>
+</body>
+</html>
