@@ -1,0 +1,128 @@
+{
+ "asOf": "Nov 18, 7:40 PM",
+ "dishes": {
+  "Turkey": "Connie",
+  "Pecan pie": "Jacqueline",
+  "Puff puff": "Jacqueline",
+  "Rolls / cornbread": "Jacqueline",
+  "GF dressing": "Natalie",
+  "Wine": "Natalie",
+  "Green beans": "Natalie",
+  "Ham": "Natalie",
+  "Candied yams": "Natalie",
+  "Mac & cheese": "Cecilia",
+  "Pound cake": "Cecilia",
+  "Apple pie": "The Newlyweds",
+  "Sparkling & soft drinks": "Arnold Weekes",
+  "Bourbon": "Ben",
+  "Roasted red potatoes": "Ben",
+  "Collard greens": "Someone",
+  "Cranberry sauce": "Jacob Okeke",
+  "Jollof rice": "Jacob Okeke"
+ },
+ "going": {
+  "dinner": [
+   "Connie",
+   "Jacqueline (2)",
+   "Natalie (2)",
+   "Cecilia (2)",
+   "The Newlyweds (2)",
+   "Arnold Weekes (7)",
+   "Ben",
+   "Someone (2)",
+   "Jacob Okeke"
+  ],
+  "movie": [
+   "Connie",
+   "Jacqueline",
+   "The Newlyweds (2)",
+   "Ben",
+   "Someone",
+   "Jacob Okeke"
+  ],
+  "pool": [
+   "Connie",
+   "Jacqueline (2)",
+   "Dominic (2)",
+   "Natalie (2)",
+   "Cecilia (2)",
+   "The Newlyweds (2)",
+   "Arnold Weekes (2)",
+   "Ben",
+   "Someone (2)",
+   "Jacob Okeke"
+  ],
+  "karaoke": [
+   "Jacqueline",
+   "Natalie",
+   "Cecilia",
+   "The Newlyweds (2)",
+   "Ben",
+   "Someone",
+   "Jacob Okeke"
+  ],
+  "latha": [
+   "Jacqueline",
+   "Dominic",
+   "Natalie",
+   "Cecilia",
+   "Arnold Weekes (2)",
+   "Ben",
+   "Someone",
+   "Jacob Okeke"
+  ],
+  "meeting": [
+   "Jacqueline",
+   "Natalie",
+   "Cecilia",
+   "Ben",
+   "Someone"
+  ],
+  "trot": [
+   "Jacqueline",
+   "Dominic",
+   "Natalie",
+   "Cecilia",
+   "Arnold Weekes",
+   "Ben",
+   "Someone",
+   "Jacob Okeke"
+  ],
+  "broncos": [
+   "Dominic (2)",
+   "Arnold Weekes (2)",
+   "Ben",
+   "Jacob Okeke"
+  ],
+  "golf-wed:cosplay": [
+   "Dominic"
+  ],
+  "shopping:fashion": [
+   "Dominic",
+   "Cecilia"
+  ],
+  "shopping:ridge": [
+   "Cecilia",
+   "Jacob Okeke"
+  ],
+  "breakfast": [
+   "Arnold Weekes (2)"
+  ],
+  "golf-fri": [
+   "Arnold Weekes",
+   "Ben"
+  ],
+  "golf-thu": [
+   "Arnold Weekes",
+   "Ben"
+  ],
+  "golf-wed": [
+   "Arnold Weekes",
+   "Ben"
+  ],
+  "spa": [
+   "Arnold Weekes",
+   "Someone"
+  ]
+ }
+}

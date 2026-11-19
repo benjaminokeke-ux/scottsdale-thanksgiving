@@ -178,6 +178,7 @@ const DISHES = [
 
 const RSVP_TO = "okekehouse@gmail.com";
 const CLAIMED = {"mac & cheese": "Cecilia", "pound cake": "Cecilia", "gf dressing": "Natalie", "wine": "Natalie", "green beans": "Natalie", "ham": "Natalie", "candied yams": "Natalie", "rolls / cornbread": "Natalie", "apple pie": "The Newlyweds", "sparkling & soft drinks": "Arnold", "bourbon": "Ben", "roasted red potatoes": "Ben", "collard greens": "taken", "pecan pie": "Jacqueline", "puff puff": "Jacqueline"};
+let GOING = {}; let asOf = "Nov 18";
 let mine = {household:"", email:"", events:{}, dishes:[]};
 const $ = s => document.querySelector(s);
 const LS = "stg26-open";
@@ -205,7 +206,7 @@ function stepper(key){
 function dishBoard(){
   const box = el("div",{class:"dishes"});
   box.append(el("div",{class:"dish-head",text:"Dish sign-up"}));
-  box.append(el("p",{class:"note",text:"Claimed as of Nov 18 are marked. Pick something open so we don't end up with four pans of the same thing."}));
+  box.append(el("p",{class:"note",text:"Claimed dishes (as of " + asOf + ") are marked. Pick something open so we don't end up with four pans of the same thing."}));
   const chip = (name, fixed) => {
     const key = name.toLowerCase();
     const isMine = mine.dishes.some(d => d.toLowerCase() === key);
@@ -253,6 +254,9 @@ function render(){
           b.addEventListener("click", () => { mine.events = {...mine.events}; if (on) delete mine.events[key]; else mine.events[key] = ev.household ? 2 : 1; save(); render(); });
           act.append(b); if (on) act.append(stepper(key)); }
         body.append(act);
+        const keys = (ev.roles || ev.ways) ? (ev.roles || ROLES).map(([suf,,g]) => [ev.id+suf, g]) : [[ev.id, null]];
+        const parts = keys.map(([k,g]) => [g, GOING[k] || []]).filter(([,n]) => n.length);
+        if (parts.length) { const ro = el("div",{class:"roster"}); parts.forEach(([g,n],i) => { if (i) ro.append(" · "); ro.append(el("b",{text:(g ? g : "Going") + ": "}), n.join(", ")); }); body.append(ro); }
         if (ev.dishes) body.append(dishBoard());
       }
       sec.append(el("article",{class:"ev"+(ev.info?" info":"")}, el("div",{class:"time",text:ev.time}), body));
@@ -297,6 +301,13 @@ $("#copy").addEventListener("click", async () => {
   catch(e) { $("#sumtext").textContent = t; const r = document.createRange(); r.selectNodeContents($("#sumtext")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); $("#copied").textContent = "Selected. Copy it and email it to " + RSVP_TO + "."; }
 });
 render();
+fetch("claims.json?t=" + Date.now(), {cache:"no-store"}).then(r => r.ok ? r.json() : null).then(c => {
+  if (!c) return;
+  if (c.dishes && typeof c.dishes === "object") { for (const k in CLAIMED) delete CLAIMED[k]; for (const [d,w] of Object.entries(c.dishes)) CLAIMED[String(d).toLowerCase()] = String(w); }
+  if (c.going && typeof c.going === "object") GOING = c.going;
+  if (c.asOf) asOf = String(c.asOf);
+  render();
+}).catch(() => {});
 </script>
 </body>
 </html>
