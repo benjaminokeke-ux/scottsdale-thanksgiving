@@ -177,7 +177,7 @@ const DISHES = [
 ];
 
 const RSVP_TO = "okekehouse@gmail.com";
-const CLAIMED = {"mac & cheese":"Cecilia","pound cake":"Cecilia","green beans":"Natalie","wine":"Natalie","gf dressing":"Natalie","apple pie":"The Newlyweds","sparkling & soft drinks":"Arnold","bourbon":"Ben","roasted red potatoes":"Ben","collard greens":"taken"};
+const CLAIMED = {"mac & cheese": "Cecilia", "pound cake": "Cecilia", "gf dressing": "Natalie", "wine": "Natalie", "green beans": "Natalie", "ham": "Natalie", "candied yams": "Natalie", "rolls / cornbread": "Natalie", "apple pie": "The Newlyweds", "sparkling & soft drinks": "Arnold", "bourbon": "Ben", "roasted red potatoes": "Ben", "collard greens": "taken", "pecan pie": "Jacqueline", "puff puff": "Jacqueline"};
 let mine = {household:"", email:"", events:{}, dishes:[]};
 const $ = s => document.querySelector(s);
 const LS = "stg26-open";
@@ -205,7 +205,7 @@ function stepper(key){
 function dishBoard(){
   const box = el("div",{class:"dishes"});
   box.append(el("div",{class:"dish-head",text:"Dish sign-up"}));
-  box.append(el("p",{class:"note",text:"Claimed as of Nov 12 are marked. Pick something open so we don't end up with four pans of the same thing."}));
+  box.append(el("p",{class:"note",text:"Claimed as of Nov 18 are marked. Pick something open so we don't end up with four pans of the same thing."}));
   const chip = (name, fixed) => {
     const key = name.toLowerCase();
     const isMine = mine.dishes.some(d => d.toLowerCase() === key);
